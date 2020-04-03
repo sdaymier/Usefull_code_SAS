@@ -1,0 +1,75 @@
+/* **************************************************** */
+/* Macro programme : VCramer                            */
+/* **************************************************** */
+/* PARAMETRE EN ENTREE 									                */
+/* 	-> TABIN : base en entrée 							            */
+/*  -> TABOUT: nom de la matrice en sortie 				      */
+/*  -> liste : liste des variables a étudier 			      */
+/* **************************************************** */
+/* Sortie : Matrice 2x2 symétrique qui synthétise les   */
+/* résultats pour chaque paire de variable              */  
+/* **************************************************** */
+
+%macro cramer(tabin = , tabout = , liste = );
+
+	/* ************************************************ */
+	/* 0- Initialisation de l'environnement		          */
+	/* ************************************************ */
+	proc delete data=matrice; run;
+	data matrice;
+		set _null_;
+		format var1 $25. var2 $25.;
+	run;
+
+	/* ************************************************ */
+	/* 1- Calcul du VCramer pour chaque couple de var   */
+	/* ************************************************ */
+	%let i = 1; 
+	%do %while (%scan(&liste., &i.) ne );
+		%let var1 = %scan(&liste.,&i.) ; 
+
+		%let j = 1;
+		%do %while (%scan(&liste., &j.) ne );
+			%let var2 = %scan(&liste,&j.) ; 
+
+			%put >>>> Détermination du VCramer entre &var1. et &var2.;
+
+			proc freq data = &tabin. noprint;
+				tables &var1.* &var2. /chisq;
+				output cramv out=cram;
+			run;
+
+			data matrice;
+				set matrice cram (in=a);
+				if a then do;
+					var1="&var1.";
+					var2="&var2.";
+				end;
+			run;
+
+			proc delete data= cram ; run;
+			%let j = %eval(&j. + 1);
+		%end ; 
+
+		%let i = %eval(&i. + 1);
+	%end ; 
+
+	/* ************************************************ */
+	/* 2- Mise en forme finale                          */
+	/* ************************************************ */
+	proc sort data=matrice; by var1 var2; run;
+	proc transpose data=matrice out=&tabout. (drop=_name_ _label_);
+		id var2; 
+		by var1;
+		var _cramv_;
+	run;
+
+	
+%mend cramer;
+
+/* **************************************************** */
+/* Exemple de lancement :                               */
+/* **************************************************** */ 
+%cramer(  tabin = sashelp.imagerw
+		, liste = display query read write
+		, tabout = matrice_cramerm ); 
