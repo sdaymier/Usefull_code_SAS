@@ -3,5 +3,8 @@ Code tricks and usefull macro
 
 ## EDA folder : 
 * Basic statistics with macro "Better mean"
-* VCramer 
-* Heatmap correlation
+
+* Bivariate analysis
+** Heatmap correlation
+** VCramer 
+
