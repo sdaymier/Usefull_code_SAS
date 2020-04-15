@@ -11,3 +11,6 @@ Code tricks and usefull macro
 ### Statistics test
 * Discretisation : [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/EDA/MACRO_Discretisation_aov)
 * Test Kolmogorov Smirnov  : [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/EDA/MACRO_Test_KS)
+
+## Database : 
+* Identify top/flop : [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/Database_treatment/Identify_TOP_FLOP)
