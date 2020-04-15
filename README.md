@@ -5,6 +5,6 @@ Code tricks and usefull macro
 * Basic statistics with macro "Better mean"
 
 ### Bivariate analysis
-* Heatmap correlation
+* Heatmap correlation : https://github.com/sdaymier/Usefull_code_SAS/blob/master/EDA/MACRO_HeatMap_Correlation
 * VCramer 
 
