@@ -1,0 +1,76 @@
+/* ************************************************************************* */
+/* OBJECTIF : vérifier si deux distributions empiriques sont « identiques »  */
+/* ou non. Typiquement, dans le cadre d’un score par exemple, elle permet    */
+/* d’avoir une idée du comportement d’une variable continue par rapport à une*/ 
+/* variable cible. 							     */
+/* ************************************************************************* */
+/* Paramètres en entrée : 													 */
+/*  - TABIN : base sur laquelle l'étude sera réalisées 						 */
+/*  - TABOUT : base en sortie, après suppression des variables identifiée 	 */
+/*			  comme fortement concentrée autour d'une modalité 				 */
+/*  - VAR_CIBLE : variable de partitionnement des distributions				 */
+/*  - VAR_DROP : éventuelles variables a ne pas considérer dans l'analyse 	 */
+/*			  (exemple : les identifiants, la cible...)						 */
+/* ************************************************************************* */
+
+%macro test_kolmogorov_smirnov(tabin = , tabout =, var_cible=, var_drop = );
+
+		/* Etape 1 : Récupération de la liste des variables catégorielles 		*/
+		/* ******************************************************************** */
+		proc contents data = &tabin. (drop = &var_drop. &var_cible.) 
+					   out = cont (keep = name type) noprint; 
+		run; 
+		proc sql noprint;
+			select distinct name into : lst_var separated by " "
+			from cont	where type = 1
+		; quit;
+		proc delete data= cont; run;
+
+		/* Etape 2 : Test KS pour chacune des variables recupérées 			    */
+		/* ******************************************************************** */
+		%let i=1;
+		%do %while (%scan(&lst_var, &i) ne );
+		   %let var_quanti = %scan(&lst_var, &i);
+		   %put >>>>>>>> Traitement pour la variable : &var_quanti.;
+
+		   	proc delete data = statKS; run;
+
+			ods output KolSmir2Stats =statKS;
+			PROC NPAR1WAY DATA=&tabin. 
+				edf ;
+				CLASS &var_cible.;		
+				VAR &var_quanti.;
+			RUN ;
+
+			data statKS (drop = name1 label1 cvalue1 name2 label2 nvalue2); 
+				set statKS (rename = (cValue2 = pvalue)
+							where = (label2 = "Pr > KSa"));
+				if  compress(pvalue) = "<.0001" then CCL = "Distribution diffente";
+				else CCL = "Identique";
+			run;
+
+			/* Concatenation des résultats dans une table de synthese */
+		   	%if %sysfunc(exist(&tabout.)) ne 1 %then %do;
+				%put table &tabout. n existe pas;
+				data &tabout.; 
+					set statKS; 
+				run;
+			%end;
+			%else %do;
+				data &tabout.; 
+					set &tabout.
+						statKS; 
+				run;
+			%end;
+
+		   %let i = %eval(&i + 1);
+		%end;
+
+	proc delete data = statKS; run;
+
+%mend test_kolmogorov_smirnov;
+/* Exemple de lancement */
+* %test_kolmogorov_smirnov( tabin 	= tmp3
+						, tabout 	= synth_KS
+						, var_cible = cible
+						, var_drop 	= cod_matricule );
