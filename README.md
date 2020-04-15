@@ -5,6 +5,5 @@ Code tricks and usefull macro
 * Basic statistics with macro "Better mean"
 
 ### Bivariate analysis
-* Heatmap correlation : [I'm a relative reference to a repository file](..blob/master/EDA/MACRO_HeatMap_Correlation)
-* VCramer 
-
+* Heatmap correlation : [View code](..blob/master/EDA/MACRO_HeatMap_Correlation)
+* VCramer : [View code](..blob/master/EDA/MACRO_VCramer)
