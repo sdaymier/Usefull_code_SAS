@@ -1,0 +1,15 @@
+/* Macro variable :*/
+%let nb_top_flop = 10; /* pour un top / flop 10 */
+%let nb_top_flop = 5; /* pour un top / flop 5 */
+
+/* Etape 1 : Sorting de la base par rapport à la variable qui permet d'identifier le top/flop */
+proc sort data=mabase; by mavar; run;
+
+/* Etape 2 : Récupération automatique du nombre de ligne de la dernière base utilisée */
+%let eff_total = &sqlobs.;
+
+/* Etape 3 : Création de la base top/flop */
+DATA top_flop ;
+        SET mabase ( obs = &nb_top_flop. )
+            mabase ( firstobs = %eval(&eff_total.- %eval(&nb_top_flop. - 1)) );
+run ;
