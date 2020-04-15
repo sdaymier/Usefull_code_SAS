@@ -5,5 +5,9 @@ Code tricks and usefull macro
 * Basic statistics with macro "Better mean"
 
 ### Bivariate analysis
-* Heatmap correlation : [View code](..blob/master/EDA/MACRO_HeatMap_Correlation)
-* VCramer : [View code](..blob/master/EDA/MACRO_VCramer)
+* Heatmap correlation : [View code](...EDA/MACRO_HeatMap_Correlation)
+* VCramer : [View code](..EDA/MACRO_VCramer)
+
+### Statistics test
+* Discretisation : [View code](..EDA/MACRO_Discretisation_aov)
+* Test Kolmogorov Smirnov  : [View code](..EDA/MACRO_Test_KS)
