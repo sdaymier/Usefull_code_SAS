@@ -1,0 +1,33 @@
+
+/* **************************************************** */
+/* Objectif : Calculer la répartition pour plusieurs variables, selon un critère */
+/* **************************************************** */
+/* Paramètre en entrée : 				*/
+/*   -> tabin : Nom de la table en entrée
+/*   -> tabout : Nom de la table en sortie
+/*   -> list_var : Liste des variables catégorielles dont on souhaite évaluer la volumétrie / répartition
+/*   -> var_class : variable de distinction (cible, date...)
+/* **************************************************** */
+%let tabin     = ;
+%let list_var  = ;
+%let var_class = ;
+%let tabout    = ;
+
+PROC TABULATE DATA = &tabin. missing;
+   CLASS &var_class. &lst_var_model.;
+   TABLE (&list_var.), &var_class. / printmiss misstext= "XX_MISSING";
+   ods output table = resultat_tabulate (drop= _type_ _page_ _table_);
+RUN ;
+
+/* retraitement de la sortie */
+data &tabout. (drop=&list_var.) ;
+	set resultat_tabulate
+	format modalite $30.;
+	array varr (*) &list_var.;
+	do i = 1 to dim(varr);
+		if not missing(varr(i)) then do;
+			modalite = varr(i);
+			variable = Scan("&lst_var_model",i);
+		end;
+	end;
+run;
