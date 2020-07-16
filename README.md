@@ -1,6 +1,9 @@
 # Usefull_code_SAS
 Code tricks and usefull macro
 
+## MacroVariable folder : 
+* Convert format date automatically : [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/MacroVariable/AutoConvert_date_format.sas)
+
 ## EDA folder : 
 * Basic statistics with macro "Better mean": [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/EDA/MACRO_Better_Means)
 
