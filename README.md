@@ -17,3 +17,6 @@ Code tricks and usefull macro
 
 ## Database : 
 * Identify top/flop : [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/Database_treatment/Identify_TOP_FLOP)
+
+## Modelling : Logistic Regression
+* Plot score density graph, according to the criteria :  [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/Score_RegLog/RegLog_Densite_Score.sas)
