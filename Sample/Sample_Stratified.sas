@@ -1,12 +1,12 @@
 /* ******************************************************************** */
 /* ******************************************************************** */
-/* 							MACRO - Echantillonnage						*/
+/* 			MACRO - Echantillonnage				*/
 /* ******************************************************************** */
 /* ******************************************************************** */
-/* Auteur 	: Sarah Daymier 											*/
-/* Date 	: 2019-05-14												*/
+/* Auteur 	: Sarah Daymier 					*/
+/* Date 	: 2019-05-14						*/
 /* -------------------------------------------------------------------- */
-/* Objectif : Macros pour réaliser des echantillonnages	stratifié		*/
+/* Objectif : Macros pour réaliser des echantillonnages	stratifié	*/
 /* ******************************************************************** */
 
 %macro obsnvars(ds);
@@ -31,24 +31,24 @@
 %mend obsnvars;
 
 /* ******************************************************************** */
-/*  Macros - Echantillonnage Stratifie									*/
+/*  Macros - Echantillonnage Stratifie					*/
 /* (selon la fréquence des observations par rapport a une modalité) 	*/ 
 /* ******************************************************************** */
 
 %macro sample_stratified_with_frequency(  tabin = 
-										, var_strat = 
-										, SampleRate = 
-										, ID = );
+					, var_strat = 
+					, SampleRate = 
+					, ID = );
 
 /* ******************************************************************** */
-/* Paramètres															*/
+/* Paramètres								*/
 /* -------------------------------------------------------------------- */
-/* - TABIN 		: Table en entrée 										*/
-/* - VAR_STRAT 	: Variable pour la strate								*/
+/* - TABIN 		: Table en entrée 				*/
+/* - VAR_STRAT 	: Variable pour la strate				*/
 /* - SampleRate : Pourcentage obs que doit contenir echantillon en sortie */
 /* - ID 		: Liste des identifiants (permet de faire la jointure 	*/
-/*				  avec la base en input)								*/
-/* - TABOUT		: Base en sortie (échantillon) 							*/
+/*				  avec la base en input)		*/
+/* - TABOUT		: Base en sortie (échantillon) 			*/
 /* ******************************************************************** */
 
 	/* Etape 0 - Calcul de la sampsize */
