@@ -22,5 +22,9 @@ Code tricks and usefull macro
 * Stratified sample : [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/Sample/Sample_Stratified.sas)
 
 ## Modelling : Logistic Regression
+
+### Modelling
+
+### Validation
 * Plot score density graph, according to the criteria :  [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/Score_RegLog/RegLog_Densite_Score.sas)
 * Create a normalized grading : [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/Score_RegLog/RegLog_Grille_Score_Note_Normee.sas)
