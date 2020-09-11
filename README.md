@@ -20,3 +20,4 @@ Code tricks and usefull macro
 
 ## Modelling : Logistic Regression
 * Plot score density graph, according to the criteria :  [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/Score_RegLog/RegLog_Densite_Score.sas)
+* Create a normalized grading : [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/Score_RegLog/RegLog_Grille_Score_Note_Normee.sas)
