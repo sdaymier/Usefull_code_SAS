@@ -2,6 +2,7 @@
 Code tricks and usefull macro
 
 ## MacroVariable folder : 
+* Folder creation : [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/MacroVariable/Folder_creation.sas)
 * Convert format date automatically : [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/MacroVariable/AutoConvert_date_format.sas)
 
 ## EDA folder : 
