@@ -19,7 +19,7 @@ Code tricks and usefull macro
 * Identify top/flop : [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/Database_treatment/Identify_TOP_FLOP)
 
 ## Sample
-* Stratified sample : [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/Database_treatment/Identify_TOP_FLOP)
+* Stratified sample : [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/Sample/Sample_Stratified.sas)
 
 ## Modelling : Logistic Regression
 * Plot score density graph, according to the criteria :  [View code](https://github.com/sdaymier/Usefull_code_SAS/blob/master/Score_RegLog/RegLog_Densite_Score.sas)
